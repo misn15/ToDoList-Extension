@@ -1,25 +1,20 @@
 {
-	"name": "carbon-trigger-extension",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"watch": "webpack --watch",
-		"build": "webpack"
-	},
-	"keywords": [
-		"chrome extension",
-		"edge extension",
-		"carbon usage tracker"
-	],
-	"author": "Jen Looper",
-	"license": "MIT",
-	"devDependencies": {
-		"webpack": "^4.44.1",
-		"webpack-cli": "^3.3.12"
-	},
-	"dependencies": {
-		"axios": "^0.19.2"
-	}
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "Using tmrow's C02 Signal API to track electricity usage, build a browser extension so that you can have a reminder right in your browser about how heavy your region's electricity usage is. Using this extension ad hoc will help you to make judgement calls on your activities based on this information.",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.37.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": "Nicole Mis",
+  "license": "ISC"
 }

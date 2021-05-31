@@ -2,16 +2,13 @@ import axios from '../node_modules/axios';
 
 // form fields
 const form = document.querySelector('.form-data');
-const region = document.querySelector('.region-name');
 const apiKey = document.querySelector('.api-key');
 
 // results
 const errors = document.querySelector('.errors');
 const loading = document.querySelector('.loading');
 const results = document.querySelector('.result-container');
-const usage = document.querySelector('.carbon-usage');
-const fossilfuel = document.querySelector('.fossil-fuel');
-const myregion = document.querySelector('.my-region');
+const projects = document.querySelector('.projects');
 const clearBtn = document.querySelector('.clear-btn');
 
 form.addEventListener('submit', (e) => handleSubmit(e));
@@ -21,12 +18,11 @@ init();
 function init() {
 	//if anything is in localStorage, pick it up
 	const storedApiKey = localStorage.getItem('apiKey');
-	const storedRegion = localStorage.getItem('regionName');
 
 	//set icon to be generic green
 	//todo
 
-	if (storedApiKey === null || storedRegion === null) {
+	if (storedApiKey === null) {
 		//if we don't have the keys, show the form
 		form.style.display = 'block';
 		results.style.display = 'none';
@@ -35,7 +31,7 @@ function init() {
 		errors.textContent = '';
 	} else {
         //if we have saved keys/regions in localStorage, show results when they load
-        displayCarbonUsage(storedApiKey, storedRegion);
+        displayProjects(storedApiKey);
 		results.style.display = 'none';
 		form.style.display = 'none';
 		clearBtn.style.display = 'block';
@@ -45,48 +41,43 @@ function init() {
 function reset(e) {
 	e.preventDefault();
 	//clear local storage for region only
-	localStorage.removeItem('regionName');
+	localStorage.removeItem('apiKey');
+	//localStorage.removeItem('regionName');
 	init();
 }
 
 function handleSubmit(e) {
 	e.preventDefault();
-	setUpUser(apiKey.value, region.value);
+	setUpUser(apiKey.value);
 }
 
-function setUpUser(apiKey, regionName) {
+function setUpUser(apiKey) {
 	localStorage.setItem('apiKey', apiKey);
-	localStorage.setItem('regionName', regionName);
 	loading.style.display = 'block';
 	errors.textContent = '';
 	clearBtn.style.display = 'block';
 	//make initial call
-	displayCarbonUsage(apiKey, regionName);
+	displayProjects(apiKey);
 }
 
-async function displayCarbonUsage(apiKey, region) {
+async function displayProjects(apiKey) {
 	try {
 		await axios
-			.get('https://api.todoist.com/rest/v1/projects', {
+			.get('https://api.todoist.com/rest/v1/tasks', {
 				params: {
 				},
 				headers: {
-					'auth-token': apiKey,
+					'Authorization': "Bearer "+ apiKey
 				},
 			})
 			.then((response) => {
 				//let projects = Math.floor(response.data.data.carbonIntensity);
 				console.log(response.data);
 
-				
 
 				loading.style.display = 'none';
 				form.style.display = 'none';
-				usage.textContent =
-					Math.round(response.data.data.carbonIntensity) + ' grams (grams C02 emitted per kilowatt hour)';
-				fossilfuel.textContent =
-					response.data.data.fossilFuelPercentage.toFixed(2) +
-					'% (percentage of fossil fuels used to generate electricity)';
+				projects.textContent = 'success';
 				results.style.display = 'block';
 			});
 	} catch (error) {

@@ -10,20 +10,22 @@
 </head>
 
 <body class="container">
-	<img alt="plants and people" src="images/plants-people.png" />
+	<!-- <img alt="plants and people" src="images/plants-people.png" /> -->
 	<div>
-		<h1>Welcome to your To Do List</h1>
+		<h1 style="font-family: Comic Sans MS;">&#10003; To Do List</h1>	
+		
 	</div>
 	<!--form area-->
 	<form class="form-data" autocomplete="on">
 		<div>
-			<h2>New? Add your Information</h2>
+			<h2>Enter api key to view tasks</h2>
 		</div>
 		<div class="api-input">
 			<label for="api">Your API Key</label>
 			<input type="text" id="api" required class="api-key" />
 		</div>
 		<button class="search-btn">Submit</button>
+		<button class="task-btn">Add Task</button>
 	</form>	
 
 	<!--result area-->
@@ -32,11 +34,10 @@
 		<div class="errors"></div>
 		<div class="data"></div>
 		<div class="result-container">
-			<p><strong>Region: </strong><span class="my-region"></span></p>
-			<p><strong>Carbon Usage: </strong><span class="carbon-usage"></span></p>
-			<p><strong>Fossil Fuel Percentage: </strong><span class="fossil-fuel"></span></p>
+			<p><strong>Projects: </strong><span class="projects"></span></p>
 		</div>
 		<button class="clear-btn">Change region</button>
+		
 	</div>
 
 	<script src="main.js"></script>
