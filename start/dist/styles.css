@@ -1,12 +1,9 @@
 .container {
-	margin: 1.5em;
+	margin-left: 3.7em;
 	text-align: center;
-	/* background-color:rgb(185, 228, 177); */
+	align-items: left;
 	color: #555;
-}
-
-.result {
-	margin-top: 1em;
+	overflow: scroll;
 }
 
 .clear-btn {
@@ -50,7 +47,7 @@ html {
 /* General settings */
 
 body {
-	margin: 0; 
+	/* margin: 0;  */
 	font: var(--sans);
 	font-weight: 400;
 	font-style: normal;
@@ -125,11 +122,8 @@ label {
 	justify-content: flex-start;
 	
 }
-
-.region-input {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+.projects {
+	text-align: left;
 }
 
 .api-input {
@@ -160,11 +154,6 @@ input:hover,
 textarea:hover,
 select:hover {
 	opacity: 0.8;
-}
-
-.result {
-	text-align: left;
-	/* display: none; */
 }
 
 .search-btn {
