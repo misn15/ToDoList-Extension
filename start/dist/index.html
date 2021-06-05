@@ -31,10 +31,17 @@
 		<div class="loading">loading...</div>
 		<div class="errors"></div>
 		<div class="data"></div>
-		<div class="result-container">
-			<p><strong>To Do Items: </strong><span class="projects"></span></p>
+		<div class="result-container" style="width: 700px;">
+			<p>
+				<!-- <strong>To Do Items: </strong> -->
+				<div id="projects"></div>
+			</p>
+			<div class="buttons">
 			<button class="clear-btn">Add Task</button>
+			<button class="delete-btn">Delete Task</button>
+			</div>
 		</div>
+		
 		<form class="task-form">
 			<label for="content">Title:</label>
 			<input id="content" name="content" type="text">
@@ -42,7 +49,10 @@
 			<input id="description" name="description" type="text">
 			<button class="create-task">Submit</button>
 		</form>
-		<div class="task-data"></div>
+		<div class="task-data">
+			<p>Your task has been successfully added.</p>
+			<button class="back-btn">Go back to task list</button>
+		</div>
 	</div>
 	
 	<script src="main.js"></script>

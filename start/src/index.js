@@ -5,39 +5,51 @@ const form = document.querySelector('.form-data');
 const task = document.querySelector('.task-form');
 const taskData = document.querySelector('.task-data');
 const apiKey = document.querySelector('.api-key');
+const buttons = document.querySelector('.buttons');
+const backBtn = document.querySelector('.back-btn');
+const projects = document.getElementById('projects');
 let item = null;
 
 // results
 const errors = document.querySelector('.errors');
 const loading = document.querySelector('.loading');
 const results = document.querySelector('.result-container');
-const projects = document.querySelector('.projects');
 const clearBtn = document.querySelector('.clear-btn');
+const deleteBtn = document.querySelector('.delete-btn');
 
 form.addEventListener('submit', (e) => handleSubmit(e));
 task.addEventListener('submit', (e) => register(e));
 clearBtn.addEventListener('click', (e) => displayTaskForm(e));
+backBtn.addEventListener('click', () => {
+	results.style.display = 'none';
+	taskData.style.display = 'none';
+	buttons.style.display = 'block';
+	displayTasks(apiKey.value)
+});
 init();
 
 function init() {
 	//if anything is in localStorage, pick it up
 	const storedApiKey = localStorage.getItem('apiKey');
 	task.style.display = 'none';
+	taskData.style.display = 'none';
+	results.style.display = 'none';
+	
 
 	if (storedApiKey === null) {
 		//if we don't have the keys, show the form
 		form.style.display = 'block';
-		results.style.display = 'none';
 		loading.style.display = 'none';
-		clearBtn.style.display = 'none';
-		task.style.display = 'none';
+		// clearBtn.style.display = 'none';
+		// deleteBtn.style.display = 'none';
+		buttons.style.display = 'none';
 	} else {
         //if we have saved keys/regions in localStorage, show results when they load
         displayTasks(storedApiKey);
-		results.style.display = 'none';
 		form.style.display = 'none';
-		clearBtn.style.display = 'block';
-		task.style.display = 'none';
+		// clearBtn.style.display = 'block';
+		// deleteBtn.style.display = 'block';
+		buttons.style.display = 'block';
 	}
 };
 
@@ -53,7 +65,9 @@ function displayTaskForm(e) {
 	e.preventDefault();
 	task.style.display = 'block';
 	results.style.display = 'none';
-	clearBtn.style.display = 'none';
+	// clearBtn.style.display = 'none';
+	// deleteBtn.style.display = 'none';
+	buttons.style.display = 'none';
 }
 
 function handleSubmit(e) {
@@ -65,7 +79,9 @@ function setUpUser(apiKey) {
 	localStorage.setItem('apiKey', apiKey);
 	loading.style.display = 'block';
 	errors.textContent = '';
-	clearBtn.style.display = 'block';
+	// clearBtn.style.display = 'block';
+	// deleteBtn.style.display = 'block';
+	buttons.style.display = 'block';
 	//make initial call
 	displayTasks(apiKey);
 }
@@ -81,13 +97,26 @@ async function displayTasks(apiKey) {
 				},
 			})
 			.then((response) => {
-
+				projects.innerHTML = '';
 				loading.style.display = 'none';
 				form.style.display = 'none';
+				
 				response.data.map(item => {
-					let node = document.createElement("li"); 
-					node.appendChild(document.createTextNode(item.content));
-					projects.appendChild(node);
+					let checkbox = document.createElement("input");
+					let br = document.createElement("br");
+					checkbox.setAttribute("type", "checkbox");
+					checkbox.id = "id";
+					let label = document.createElement('label');
+					label.htmlFor = "id";
+					label.appendChild(document.createTextNode(item.content));
+					//node.appendChild(document.createTextNode(item.content));
+
+					//node.appendChild(document.createTextNode(item.content));
+					
+					projects.appendChild(checkbox);
+					projects.appendChild(label);
+					projects.appendChild(br);
+	
 				});
 				results.style.display = 'block';
 			});
@@ -106,9 +135,12 @@ async function register(e) {
 	const data = JSON.stringify(Object.fromEntries(formData));
 	//taskData.textContent="task added";
 	task.style.display = "none";
-	taskData.style.display = 'block';
+	//taskData.style.display = 'block';
+	
+	
 	const result = await createTask(data, apiKey.value);
-
+	taskData.style.display = 'block';
+	
 	item = result;
   }
 
