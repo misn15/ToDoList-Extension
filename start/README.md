@@ -18,5 +18,5 @@ Build the extension from webpack
 npm run build
 ```
 
-To install on Edge, use the 'three dot' menu on the top right corner of the browser to find the Extensions panel. From there, select 'Load Unpacked' to load a new extension. Open the 'dist' folder at the prompt and the extension will load. To use it, you will need an API key for Todoist's API ([get one here](https://www.todoist.com/).
+To install on Edge, use the 'three dot' menu on the top right corner of the browser to find the Extensions panel. From there, select 'Load Unpacked' to load a new extension. Open the 'dist' folder at the prompt and the extension will load. To use it, you will need an API key for Todoist's API ([get one here])(https://www.todoist.com/).
 
