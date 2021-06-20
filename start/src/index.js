@@ -46,14 +46,6 @@ function init() {
 	}
 };
 
-// function reset(e) {
-// 	e.preventDefault();
-// 	//clear local storage for region only
-// 	localStorage.removeItem('apiKey');
-// 	//localStorage.removeItem('regionName');
-// 	init();
-// }
-
 function displayTaskForm(e) {
 	e.preventDefault();
 	task.style.display = 'block';
@@ -176,21 +168,7 @@ async function createTask(item, apiKey) {
 	});
 	}	 catch (error) {
 		return { error: error.message || 'Unknown error' };
-	//   return await response.json();
   }
 }
 
-//   async function completeTask(item, apiKey) {
-// 	try {
-// 	  const response = fetch('https://api.todoist.com/rest/v1/tasks/'+item+'/close', {
-// 		method: 'POST',
-// 		headers: {'Authorization': "Bearer "+ apiKey}
-// 	  });
-// 	  alert(response.data);
-// 	  return true;
-// 	} catch (error) {
-// 	//alert(error.message);
-// 	  return { error: error.message || 'Unknown error' };
-// 	}
-//   }
 
